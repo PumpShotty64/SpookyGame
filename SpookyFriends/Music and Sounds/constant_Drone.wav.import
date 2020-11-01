@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/constant_Drone.wav-66f8d1fe23de8ba8be2490a0c1953e62.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/constant_Drone.wav"
+dest_files=[ "res://.import/constant_Drone.wav-66f8d1fe23de8ba8be2490a0c1953e62.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Tile Sets/Background.png" type="Texture" id=1]
 [ext_resource path="res://Tile Sets/RoomTileSet.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Player/Darkness.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/World_Main.cs" type="Script" id=11]
+[ext_resource path="res://Music and Sounds/constant_Drone.wav" type="AudioStream" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Background.png 0"
@@ -245,3 +246,8 @@ position = Vector2( 565.375, 230.026 )
 position = Vector2( 26.0905, 23.1033 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 9 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = 0.5
+pitch_scale = 0.25

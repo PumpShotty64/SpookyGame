@@ -165,7 +165,6 @@ public class Player : KinematicBody2D
 
 		
 	}
-
 	private void _on_Timer_timeout()
 	{	
 		state = Actions.MOVE;
@@ -177,7 +176,22 @@ public class Player : KinematicBody2D
 		canFlash = true;
 		timer.Stop();
 	}
+	
+	private void _on_PlayerHurtbox_area_entered(object area)
+	{
+		// Replace with function body.
+		GD.Print("DIED");
+	}
+
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Enemy0.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/World_Main.cs" type="Script" id=3]
+[ext_resource path="res://Music and Sounds/constant_Drone.wav" type="AudioStream" id=4]
 [ext_resource path="res://Tile Sets/RoomTileSet.png" type="Texture" id=5]
 [ext_resource path="res://Tile Sets/Background.png" type="Texture" id=6]
 [ext_resource path="res://Rooms/Walls.cs" type="Script" id=7]
 [ext_resource path="res://Player/Dog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/Darkness.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Music and Sounds/[ONTIVA.COM] 8-bit_ Moonlight Sonata, 3rd Movement - Beethoven-64k.wav" type="AudioStream" id=12]
 [ext_resource path="res://Player/Door.tscn" type="PackedScene" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -79,9 +80,13 @@ position = Vector2( 571.488, 224 )
 position = Vector2( 21.0466, 24.1829 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 10 )]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-volume_db = 9.087
+stream = ExtResource( 4 )
+volume_db = 0.5
 pitch_scale = 0.25
 autoplay = true
+
+[node name="Enemy0" parent="." instance=ExtResource( 2 )]
+position = Vector2( 212.237, 222.342 )

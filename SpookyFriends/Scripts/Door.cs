@@ -9,7 +9,7 @@ public class Door : Node2D
 		"res://Rooms/Level_2.tscn",
 		"res://Rooms/Level_3.tscn",
 		"res://Rooms/Level_4.tscn",
-		"res://Rooms/Level_5.tscn",
+		"res://Rooms/Level_7.tscn",
 		"res://Rooms/Level_6.tscn",
 		"res://Rooms/Level_7.tscn",
 		"res://Rooms/Level_8.tscn"
@@ -26,8 +26,11 @@ public class Door : Node2D
 	{
 		if (Input.IsActionJustPressed("ui_up") && entered == true) {
 			// next scene
+			GD.Print(index);
+			GD.Print(paths[index]);
 			GetTree().ChangeScene(paths[index]);
 			index++;
+			GD.Print(index);
 		}
 	}
 	

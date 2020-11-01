@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Darkness.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Player/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Enemy0.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Sprites/items-Sheet.png" type="Texture" id=9]
+[ext_resource path="res://Music and Sounds/constant_Drone.wav" type="AudioStream" id=10]
 
 [sub_resource type="TileSet" id=3]
 0/name = "Background.png 0"
@@ -257,3 +258,9 @@ position = Vector2( 17.6389, 23.9385 )
 
 [node name="Enemy0" parent="." instance=ExtResource( 8 )]
 position = Vector2( 422.011, 223.26 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = 0.5
+pitch_scale = 0.25
+autoplay = true

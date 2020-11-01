@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Sprites/zombie_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy0.cs" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/Enemy0Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/PlayerDetection.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Music and Sounds/monster snarl.wav" type="AudioStream" id=6]
+[ext_resource path="res://Hurtbox and Hitbox/EnemyHitbox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "IdleLeft"
@@ -143,6 +144,10 @@ height = 30.2461
 [sub_resource type="CircleShape2D" id=20]
 radius = 145.986
 
+[sub_resource type="CapsuleShape2D" id=21]
+radius = 13.4753
+height = 30.0628
+
 [node name="Enemy0" type="KinematicBody2D"]
 collision_layer = 8
 script = ExtResource( 2 )
@@ -179,8 +184,16 @@ shape = SubResource( 19 )
 [node name="CollisionShape2D" parent="PlayerDetection" index="0"]
 shape = SubResource( 20 )
 
+[node name="EnemyHitbox" parent="." instance=ExtResource( 7 )]
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+position = Vector2( 0.166855, 5.00565 )
+shape = SubResource( 21 )
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="PlayerDetection"]
+
+[editable path="EnemyHitbox"]

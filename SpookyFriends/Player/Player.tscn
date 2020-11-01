@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/player_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/player_gun_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Hurtbox and Hitbox/PlayerHurtbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.56564
@@ -263,8 +264,11 @@ graph_offset = Vector2( -122, 40 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 2.39654, 21.165 )
+
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -312,5 +316,14 @@ frame = 1
 
 [node name="FlashCooldown" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="PlayerHurtbox" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" parent="PlayerHurtbox" index="0"]
+position = Vector2( -0.148651, -0.148651 )
+shape = SubResource( 40 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="FlashCooldown" to="." method="_on_FlashCooldown_timeout"]
+[connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_PlayerHurtbox_area_entered"]
+
+[editable path="PlayerHurtbox"]
