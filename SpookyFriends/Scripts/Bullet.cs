@@ -12,4 +12,11 @@ public class Bullet : Area2D
 		velocity.y = (float) Math.Sin((double)RotationDegrees * Math.PI/180) * SPEED;
 		Position += velocity * delta;
 	}
+	
+	private void _on_Hitbox_area_entered(object area)
+	{
+		QueueFree();
+	}
 }
+
+

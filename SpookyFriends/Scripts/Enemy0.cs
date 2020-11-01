@@ -64,14 +64,16 @@ public class Enemy0 : KinematicBody2D
 		
 	}
 
-	private void _on_Hurtbox_area_entered(object area)
+	private void _on_Hurtbox_area_entered(Bullet area)
 	{
-		// Stats.HEALTH -= area.damage;
-		// knockback = area.knockback_vector * 120;
+		_DeathEffect();
+		QueueFree();
 	}
 	
 	private void _on_Stats_no_health()
 	{
+		_DeathEffect();
+		GD.Print("Enemy0 Dies");
 		QueueFree();
 	}
 }

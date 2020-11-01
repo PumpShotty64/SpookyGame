@@ -6,6 +6,7 @@ public class Enemy0Stats : Node
 	// Declare member variables here. Examples:
 	[Export] public int MAXHEALTH = 1;
 	[Export] public int HEALTH = 1;
+	/*
 	public int HEALTH_{
 		get{
 			return this.HEALTH;
@@ -17,7 +18,7 @@ public class Enemy0Stats : Node
 			}
 		}
 	}
-	
+	*/
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

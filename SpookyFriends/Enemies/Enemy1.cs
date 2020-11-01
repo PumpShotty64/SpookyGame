@@ -10,17 +10,19 @@ public class Enemy1 : KinematicBody2D
 	[Export] int MAXSPEED = 80;
 	[Export] int ACCELERATION = 500;
 	// [Export] int FRICTION = 800;
-	Enemy1Stats Stats = null;
+	// Enemy1Stats Stats = null;
 	PlayerDetection playerDetection = null;
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
 	private AnimationNodeStateMachinePlayback animationState = null;
 	int STATE = 0; // 0:idle 1:chase
 	
+	int HEALTH = 3 + 1; // idk why he takes damage instantly when spawning
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Stats = GetNode<Node>("Enemy1Stats") as Enemy1Stats; 
+		// Stats = GetNode<Node>("Enemy1Stats") as Enemy1Stats; 
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;
@@ -61,18 +63,22 @@ public class Enemy1 : KinematicBody2D
 
 	private void _DeathEffect()
 	{
-		
+		// [ TODO : MAKE DEATH DO SOMETHING ]
 	}
 
-	private void _on_Hurtbox_area_entered(object area)
+	private void _on_Hurtbox_area_entered(Bullet area)
 	{
-		// Stats.HEALTH -= area.damage;
+		GD.Print("Enemy1 Hurt");
+		HEALTH -= 1; // area.damage wont work for some reason
+		if (HEALTH <= 0)
+			_on_Stats_no_health();
 		// knockback = area.knockback_vector * 120;
 	}
 	
 	private void _on_Stats_no_health()
 	{
+		_DeathEffect();
+		GD.Print("Enemy1 Dies");
 		QueueFree();
 	}
 }
-

@@ -117,16 +117,17 @@ shape = SubResource( 10 )
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( -4.43237, 8.5946 )
+position = Vector2( -4.71298, 3.79072 )
 shape = SubResource( 11 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( -5.64874, 28.2437 )
+position = Vector2( -4.24566, 28.2437 )
 rotation = 1.57079
 shape = SubResource( 12 )
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="PlayerDetection"]
 
