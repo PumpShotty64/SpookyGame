@@ -104,40 +104,17 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "BarkLeft"
-
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "BarkLeft"
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "BarkRight"
-
-[sub_resource type="AnimationNodeAnimation" id=24]
-animation = "BarkRight"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id=25]
-blend_point_0/node = SubResource( 21 )
-blend_point_0/pos = Vector2( -1, 1 )
-blend_point_1/node = SubResource( 22 )
-blend_point_1/pos = Vector2( -1, -1 )
-blend_point_2/node = SubResource( 23 )
-blend_point_2/pos = Vector2( 1, 1 )
-blend_point_3/node = SubResource( 24 )
-blend_point_3/pos = Vector2( 1, -1 )
-blend_mode = 1
-
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "IdleLeft"
+animation = "BarkLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "IdleLeft"
+animation = "BarkLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "IdleRight"
+animation = "BarkRight"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
-animation = "IdleRight"
+animation = "BarkRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=11]
 blend_point_0/node = SubResource( 7 )
@@ -151,16 +128,16 @@ blend_point_3/pos = Vector2( 1, -1 )
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "WalkLeft"
+animation = "IdleLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=13]
-animation = "WalkLeft"
+animation = "IdleLeft"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "WalkRight"
+animation = "IdleRight"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "WalkRight"
+animation = "IdleRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=16]
 blend_point_0/node = SubResource( 12 )
@@ -173,29 +150,52 @@ blend_point_3/node = SubResource( 15 )
 blend_point_3/pos = Vector2( 1, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "WalkLeft"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "WalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=21]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = Vector2( -1, 1 )
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = Vector2( -1, -1 )
+blend_point_2/node = SubResource( 19 )
+blend_point_2/pos = Vector2( 1, 1 )
+blend_point_3/node = SubResource( 20 )
+blend_point_3/pos = Vector2( 1, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachine" id=19]
-states/Bark/node = SubResource( 25 )
+[sub_resource type="AnimationNodeStateMachine" id=28]
+states/Bark/node = SubResource( 11 )
 states/Bark/position = Vector2( 458, 199 )
-states/Idle/node = SubResource( 11 )
+states/Idle/node = SubResource( 16 )
 states/Idle/position = Vector2( 358, 85 )
-states/Walk/node = SubResource( 16 )
+states/Walk/node = SubResource( 21 )
 states/Walk/position = Vector2( 567, 91 )
-transitions = [ "Idle", "Walk", SubResource( 17 ), "Walk", "Idle", SubResource( 18 ), "Idle", "Bark", SubResource( 26 ), "Bark", "Idle", SubResource( 27 ), "Walk", "Bark", SubResource( 28 ), "Bark", "Walk", SubResource( 29 ) ]
+transitions = [ "Idle", "Walk", SubResource( 22 ), "Walk", "Idle", SubResource( 23 ), "Idle", "Bark", SubResource( 24 ), "Bark", "Idle", SubResource( 25 ), "Walk", "Bark", SubResource( 26 ), "Bark", "Walk", SubResource( 27 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
 
 [node name="Dog" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -215,9 +215,9 @@ anims/WalkLeft = SubResource( 5 )
 anims/WalkRight = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 19 )
+tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 20 )
+parameters/playback = SubResource( 29 )
 parameters/Bark/blend_position = Vector2( -0.315301, 0.0344827 )
 parameters/Idle/blend_position = Vector2( -0.261206, 0.267241 )
 parameters/Walk/blend_position = Vector2( 0.154559, 0.0431035 )

@@ -78,7 +78,6 @@ position = Vector2( 561, 224 )
 position = Vector2( 21.0466, 24.1829 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 10 )]
-visible = false
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 94.1124, 216.75 )
