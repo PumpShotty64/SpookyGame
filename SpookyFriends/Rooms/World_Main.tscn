@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Enemy0.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/World_Main.cs" type="Script" id=3]
+[ext_resource path="res://Enemies/Enemy1.tscn" type="PackedScene" id=4]
 
 [node name="World_Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -19,3 +20,5 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 0, 320, 640, 320, 640, 0, 656, 0, 656, 400, -16, 400, -16, 0 )
+
+[node name="Enemy1" parent="." instance=ExtResource( 4 )]
