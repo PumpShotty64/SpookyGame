@@ -17,7 +17,6 @@ public class Enemy0 : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Stats = GetNode<Node>("Enemy0Stats") as Enemy0Stats; 
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;
