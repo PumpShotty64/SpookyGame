@@ -66,6 +66,7 @@ public class Enemy1 : KinematicBody2D
 	private void _on_Hurtbox_area_entered(object area)
 	{
 		// area.damage wont work for some reason, even after casting to Bullet
+		GD.Print("Enemy1 pain");
 		HEALTH -= 1;
 		if (HEALTH <= 0)
 			_on_Stats_no_health();

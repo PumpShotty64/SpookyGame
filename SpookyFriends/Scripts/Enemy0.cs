@@ -64,6 +64,7 @@ public class Enemy0 : KinematicBody2D
 
 	private void _on_Hurtbox_area_entered(Bullet area)
 	{
+		GD.Print("Enemy0 pain");
 		_DeathEffect();
 		QueueFree();
 	}
