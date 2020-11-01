@@ -64,7 +64,7 @@ public class Enemy0 : KinematicBody2D
 		
 	}
 
-		private void _on_Hurtbox_area_entered(object area)
+	private void _on_Hurtbox_area_entered(object area)
 	{
 		// Stats.HEALTH -= area.damage;
 		// knockback = area.knockback_vector * 120;
