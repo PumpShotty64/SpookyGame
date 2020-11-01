@@ -7,7 +7,7 @@
 radius = 4.56564
 height = 4.02264
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "IdleLeft"
 length = 1.2
 loop = true
@@ -24,8 +24,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "IdleRight"
+[sub_resource type="Animation" id=3]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -41,7 +40,7 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "RunLeft"
 length = 1.1
 loop = true
@@ -58,8 +57,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "RunRight"
+[sub_resource type="Animation" id=5]
 length = 1.1
 loop = true
 tracks/0/type = "value"
@@ -98,43 +96,44 @@ blend_point_3/node = SubResource( 9 )
 blend_point_3/pos = Vector2( 1, 1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "RunLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "RunLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "RunRight"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
-animation = "RunLeft"
-
-[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "RunRight"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "RunRight"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id=17]
-blend_point_0/node = SubResource( 13 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=15]
+blend_point_0/node = SubResource( 11 )
 blend_point_0/pos = Vector2( -1, 1 )
-blend_point_1/node = SubResource( 14 )
+blend_point_1/node = SubResource( 12 )
 blend_point_1/pos = Vector2( -1, -1 )
-blend_point_2/node = SubResource( 15 )
+blend_point_2/node = SubResource( 13 )
 blend_point_2/pos = Vector2( 1, 1 )
-blend_point_3/node = SubResource( 16 )
+blend_point_3/node = SubResource( 14 )
 blend_point_3/pos = Vector2( 1, -1 )
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
+[sub_resource type="AnimationNodeStateMachine" id=18]
 states/Idle/node = SubResource( 10 )
 states/Idle/position = Vector2( 280, 77 )
-states/Run/node = SubResource( 17 )
+states/Run/node = SubResource( 15 )
 states/Run/position = Vector2( 589, 82 )
-transitions = [ "Idle", "Run", SubResource( 18 ), "Run", "Idle", SubResource( 19 ) ]
+transitions = [ "Idle", "Run", SubResource( 16 ), "Run", "Idle", SubResource( 17 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -152,14 +151,14 @@ rotation = 1.57079
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/IdleLeft = SubResource( 3 )
-anims/IdleRight = SubResource( 2 )
-anims/RunLeft = SubResource( 5 )
-anims/RunRight = SubResource( 4 )
+anims/IdleLeft = SubResource( 2 )
+anims/IdleRight = SubResource( 3 )
+anims/RunLeft = SubResource( 4 )
+anims/RunRight = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 19 )
 parameters/Idle/blend_position = Vector2( -0.0324575, -0.103448 )
 parameters/Run/blend_position = Vector2( 0, 0 )

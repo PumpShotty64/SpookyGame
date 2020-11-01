@@ -6,9 +6,9 @@ public class Player : KinematicBody2D
 	private Vector2 velocity = new Vector2();
 	//private Vector2 snap = new Vector2(0, -1);
 	//private Vector2 snapDist = new Vector2(0, 32);
-	private int MAXSPEED = 120;
-	private int ACCELERATION = 600;
-	private int FRICTION = 800;
+	[Export] public int MAXSPEED = 120;
+	[Export] int ACCELERATION = 600;
+	[Export] int FRICTION = 800;
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
 	private AnimationNodeStateMachinePlayback animationState = null;

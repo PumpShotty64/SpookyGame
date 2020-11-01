@@ -7,10 +7,10 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 568, 288 )
-collision_layer = 2
 
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 288 )
+collision_mask = 17
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0

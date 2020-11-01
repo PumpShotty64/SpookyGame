@@ -15,4 +15,16 @@ public class Enemy0 : KinematicBody2D
 		MoveAndCollide(motion);
 	}
 
+	private void _DeathEffect()
+	{
+		
+	}
+
+	private void _on_Hurtbox_area_entered(object area)
+	{
+		QueueFree();
+	}
 }
+
+
+

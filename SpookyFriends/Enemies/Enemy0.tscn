@@ -1,11 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Sprites/zombie_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy0.cs" type="Script" id=2]
-
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 12.2485
-height = 29.9896
+[ext_resource path="res://Hurtbox and Hitbox/Hurtbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleLeft"
@@ -135,6 +132,10 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 13.3123
+height = 30.2461
+
 [node name="Enemy0" type="KinematicBody2D"]
 collision_layer = 8
 script = ExtResource( 2 )
@@ -144,10 +145,6 @@ texture = ExtResource( 1 )
 vframes = 5
 hframes = 5
 frame = 19
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.54899, 5.26543 )
-shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/IdleLeft = SubResource( 2 )
@@ -161,3 +158,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 19 )
 parameters/BlendSpace2D/blend_position = Vector2( 0.37558, 0.198276 )
 parameters/Idle/blend_position = Vector2( -0.0772797, 0.0172414 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0, 4.96062 )
+shape = SubResource( 20 )
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
