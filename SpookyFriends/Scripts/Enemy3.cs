@@ -8,6 +8,7 @@ public class Enemy3 : KinematicBody2D
 	
 	PlayerDetection playerDetection = null;
 	private AnimationPlayer animationPlayer = null;
+	private AudioStreamPlayer audio = null;
 	
 	private Vector2 velocity = new Vector2(0, 0);
 	int STATE = 0; // 0:idle 1:chase
@@ -16,6 +17,8 @@ public class Enemy3 : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audio.VolumeDb = 2;
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		playerDetection = GetNode<Area2D>("PlayerDetection") as PlayerDetection;
 	}
@@ -41,6 +44,7 @@ public class Enemy3 : KinematicBody2D
 		else if (playerDetection.player != null)
 		{
 			STATE = 1;
+			audio.Play();
 		}
 		velocity = MoveAndSlide(velocity);
 	}

@@ -8,6 +8,13 @@ public class Bullet : Area2D
 	private Vector2 initial = new Vector2();
 	private bool initialized = false;
 	private int MAXDIST = 150;
+	private AudioStreamPlayer audio = null;
+	
+	public override void _Ready()
+	{
+		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audio.Play();
+	}
 	
 	public override void _PhysicsProcess(float delta)
 	{

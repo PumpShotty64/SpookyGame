@@ -10,6 +10,7 @@ public class Enemy1 : KinematicBody2D
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
 	private AnimationNodeStateMachinePlayback animationState = null;
+	private AudioStreamPlayer audio = null;
 	
 	private Vector2 velocity = new Vector2(0, 0);
 	int STATE = 0; // 0:idle 1:chase
@@ -18,6 +19,8 @@ public class Enemy1 : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audio.VolumeDb = 3;
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;
@@ -48,6 +51,7 @@ public class Enemy1 : KinematicBody2D
 		else if (playerDetection.player != null)
 		{
 			STATE = 1;
+			audio.Play();
 		}
 		velocity = MoveAndSlide(velocity);
 	}
