@@ -7,7 +7,7 @@
 [ext_resource path="res://Enemies/PlayerDetection.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Enemy1.cs" type="Script" id=6]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "Flash"
 length = 0.3
 loop = true
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ 0, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "Idle"
 loop = true
 tracks/0/type = "value"
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "values": [ 0, 0, 1, 2, 2, 1 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Run"
 length = 0.8
 loop = true
@@ -57,33 +57,33 @@ tracks/0/keys = {
 "values": [ 3, 4, 5, 6, 7, 8, 9, 10 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachine" id=12]
-states/Idle/node = SubResource( 8 )
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/Idle/node = SubResource( 4 )
 states/Idle/position = Vector2( 255, 107 )
-states/Run/node = SubResource( 9 )
+states/Run/node = SubResource( 5 )
 states/Run/position = Vector2( 504, 105 )
-transitions = [ "Idle", "Run", SubResource( 10 ), "Run", "Idle", SubResource( 11 ) ]
+transitions = [ "Idle", "Run", SubResource( 6 ), "Run", "Idle", SubResource( 7 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=10]
 radius = 304.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=11]
 radius = 32.0
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=12]
 radius = 9.38545
 height = 35.6359
 
@@ -94,17 +94,17 @@ script = ExtResource( 6 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 4
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Flash = SubResource( 6 )
-anims/Idle = SubResource( 7 )
-anims/Run = SubResource( 5 )
+anims/Flash = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Run = SubResource( 3 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 12 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 9 )
 
 [node name="Enemy1Stats" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -112,20 +112,20 @@ script = ExtResource( 2 )
 [node name="PlayerDetection" parent="." instance=ExtResource( 5 )]
 
 [node name="CollisionShape2D" parent="PlayerDetection" index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 10 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -4.43237, 8.5946 )
-shape = SubResource( 2 )
+shape = SubResource( 11 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -5.64874, 28.2437 )
 rotation = 1.57079
-shape = SubResource( 3 )
+shape = SubResource( 12 )
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
 
 [editable path="PlayerDetection"]
