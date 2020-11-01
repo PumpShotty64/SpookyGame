@@ -12,10 +12,13 @@ public class Player : KinematicBody2D
 	private int MAXSPEED = 120;
 	private int ACCELERATION = 600;
 	private int FRICTION = 800;
+	private AnimationPlayer animationPlayer = null;
+	private AnimationTree animationTree = null;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		animationPlayer = $AnimationPlayer;
 		GD.Print("Player Initialized");
 	}
 
@@ -31,6 +34,8 @@ public class Player : KinematicBody2D
 		if (InputVector != Vector2.Zero)
 		{
 			// Begin accelerating in a specific direction
+			if (InputVector.x > 0)
+			animationPlayer.Play("RunRight")
 			velocity = velocity.MoveToward(InputVector * MAXSPEED, ACCELERATION * delta);
 		}
 		else
