@@ -76,3 +76,7 @@ position = Vector2( 94.1124, 216.75 )
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
 position = Vector2( 348.264, 226.247 )
 collision_mask = 17
+
+[node name="Enemy2" type="KinematicBody2D" parent="."]
+
+[node name="Friend" type="KinematicBody2D" parent="."]
