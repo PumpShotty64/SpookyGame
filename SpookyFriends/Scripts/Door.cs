@@ -4,6 +4,18 @@ using System;
 public class Door : Node2D
 {
 	private bool entered = false;
+	private string[] paths = {
+		"res://Rooms/Level_1.tscn",
+		"res://Rooms/Level_2.tscn",
+		"res://Rooms/Level_3.tscn",
+		"res://Rooms/Level_4.tscn",
+		"res://Rooms/Level_5.tscn",
+		"res://Rooms/Level_6.tscn",
+		"res://Rooms/Level_7.tscn",
+		"res://Rooms/Level_8.tscn"
+	};
+	private static int index = 0;
+
 	public override void _Ready()
 	{
 		Connect("body_entered", this, "_on_Area2D_body_entered");
@@ -14,23 +26,20 @@ public class Door : Node2D
 	{
 		if (Input.IsActionJustPressed("ui_up") && entered == true) {
 			// next scene
-			GD.Print("Next Scene");
-			GetTree().ChangeScene("res://Rooms/Level_1.tscn");
-		
+			GetTree().ChangeScene(paths[index]);
+			index++;
 		}
 	}
 	
 	private void _on_Area2D_body_entered(object body)
 	{
 		entered = true;
-		GD.Print("Entered");
 	}
 	
 	
 	private void _on_Area2D_body_exited(object body)
 	{
 		entered = false;
-		GD.Print("Exited");
 	}
 }
 
