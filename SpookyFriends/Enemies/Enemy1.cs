@@ -3,26 +3,21 @@ using System;
 
 public class Enemy1 : KinematicBody2D
 {
-	private Vector2 velocity = new Vector2(0, 0);
-	// private Vector2 snap = new Vector2(0, -1);
-	// private Vector2 snapDist = new Vector2(0, 32);
-	private Vector2 knockback = new Vector2(0, 0);
 	[Export] int MAXSPEED = 80;
 	[Export] int ACCELERATION = 500;
-	// [Export] int FRICTION = 800;
-	// Enemy1Stats Stats = null;
+	
 	PlayerDetection playerDetection = null;
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
 	private AnimationNodeStateMachinePlayback animationState = null;
-	int STATE = 0; // 0:idle 1:chase
 	
+	private Vector2 velocity = new Vector2(0, 0);
+	int STATE = 0; // 0:idle 1:chase
 	int HEALTH = 3 + 1; // idk why he takes damage instantly when spawning
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// Stats = GetNode<Node>("Enemy1Stats") as Enemy1Stats; 
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;
@@ -30,12 +25,9 @@ public class Enemy1 : KinematicBody2D
 		playerDetection = GetNode<Area2D>("PlayerDetection") as PlayerDetection;
 	}
 
+	// Called when physics
 	public override void _PhysicsProcess(float delta)
 	{
-		// knockback = knockback.MoveToward(Vector2.Zero, 200 * delta);
-		// knockback = MoveAndSlide(knockback, stopOnSlope: true);
-		// knockback = MoveAndSlideWithSnap(knockback, snapDist, snap, stopOnSlope: true);
-		
 		if (STATE == 1)
 		{
 			// Begin accelerating in a specific direction
@@ -57,28 +49,28 @@ public class Enemy1 : KinematicBody2D
 		{
 			STATE = 1;
 		}
-		// velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
 		velocity = MoveAndSlide(velocity);
 	}
 
+	// When i die, call me
 	private void _DeathEffect()
 	{
 		// [ TODO : MAKE DEATH DO SOMETHING ]
 	}
 
-	private void _on_Hurtbox_area_entered(Bullet area)
+	// When i have ouchie, call me
+	private void _on_Hurtbox_area_entered(object area)
 	{
-		GD.Print("Enemy1 Hurt");
-		HEALTH -= 1; // area.damage wont work for some reason
+		// area.damage wont work for some reason, even after casting to Bullet
+		HEALTH -= 1;
 		if (HEALTH <= 0)
 			_on_Stats_no_health();
-		// knockback = area.knockback_vector * 120;
 	}
 	
+	// I should die now
 	private void _on_Stats_no_health()
 	{
 		_DeathEffect();
-		GD.Print("Enemy1 Dies");
 		QueueFree();
 	}
 }
