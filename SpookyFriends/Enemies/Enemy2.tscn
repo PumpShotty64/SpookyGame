@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/vent_monster_sprite-Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/PlayerDetection.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Hurtbox and Hitbox/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Hurtbox and Hitbox/Hurtbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -19,13 +22,46 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 24.8983
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 24.924
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 45.7397
+
 [node name="Enemy2" type="KinematicBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 3
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 1 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -3.56763, -6.54065 )
+shape = SubResource( 2 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -1.78381, -7.13525 )
+shape = SubResource( 3 )
+
+[node name="PlayerDetection" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+position = Vector2( -2.97302, -6.54065 )
+shape = SubResource( 4 )
+
+[editable path="Hitbox"]
+
+[editable path="Hurtbox"]
+
+[editable path="PlayerDetection"]
