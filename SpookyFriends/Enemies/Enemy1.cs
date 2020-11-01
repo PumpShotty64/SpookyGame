@@ -55,7 +55,11 @@ public class Enemy1 : KinematicBody2D
 	// When i die, call me
 	private void _DeathEffect()
 	{
-		// [ TODO : MAKE DEATH DO SOMETHING ]
+		PackedScene anime = GD.Load<PackedScene>("res://Animations/Enemy1Death.tscn");
+		Enemy1Death animation = (Enemy1Death)anime.Instance();
+		Node world = GetTree().CurrentScene;
+		animation.GlobalPosition = GlobalPosition;
+		world.AddChild(animation);
 	}
 
 	// When i have ouchie, call me

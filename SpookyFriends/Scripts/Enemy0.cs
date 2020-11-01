@@ -52,9 +52,6 @@ public class Enemy0 : KinematicBody2D
 
 	private void _DeathEffect()
 	{
-		// Enemy0Death anime = (Enemy0Death)ResourceFormatLoader.Load("res://Animations/Enemy0Death.tscn");
-		// AnimatedSprite animation = (AnimatedSprite)anime.Instance();
-		// PackedScene anime1 = GD.Load<PackedScene>("res://Animations/Enemy0Death.tscn");
 		PackedScene anime = GD.Load<PackedScene>("res://Animations/Enemy0Death.tscn");
 		Enemy0Death animation = (Enemy0Death)anime.Instance();
 		Node world = GetTree().CurrentScene;
