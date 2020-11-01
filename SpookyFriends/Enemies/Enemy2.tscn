@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/vent_monster_sprite-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/PlayerDetection.tscn" type="PackedScene" id=2]
@@ -24,15 +24,32 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 24.8983
+[sub_resource type="Animation" id=6]
+resource_name = "PreIdle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 34.1948
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 26.3722
-height = 1.15122
+radius = 48.7225
+height = 82.1589
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 32.8013
+height = 85.5077
 
 [node name="Enemy2" type="KinematicBody2D"]
 script = ExtResource( 5 )
@@ -41,15 +58,12 @@ script = ExtResource( 5 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 3
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "PreIdle"
 anims/Idle = SubResource( 1 )
-
-[node name="Hitbox" parent="." instance=ExtResource( 3 )]
-
-[node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( -3.56763, -6.54065 )
-shape = SubResource( 2 )
+anims/PreIdle = SubResource( 6 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 
@@ -60,16 +74,21 @@ shape = SubResource( 4 )
 [node name="PlayerDetection" parent="." instance=ExtResource( 2 )]
 
 [node name="CollisionShape2D" parent="PlayerDetection" index="0"]
-position = Vector2( -3.50276, -6.27578 )
+position = Vector2( -3.50276, 34.9966 )
 shape = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-autoplay = true
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
-[editable path="Hitbox"]
+[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( -2.77393, 50.6058 )
+shape = SubResource( 7 )
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
 
 [editable path="PlayerDetection"]
+
+[editable path="Hitbox"]

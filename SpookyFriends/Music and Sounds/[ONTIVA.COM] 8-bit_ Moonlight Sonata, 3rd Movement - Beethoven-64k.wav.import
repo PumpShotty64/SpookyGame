@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/[ONTIVA.COM] 8-bit_ Moonlight Sonata, 3rd Movement - Beethoven-64k.wav-2f8eb61e597191280c01b63123b2a97b.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/[ONTIVA.COM] 8-bit_ Moonlight Sonata, 3rd Movement - Beethoven-64k.wav"
+dest_files=[ "res://.import/[ONTIVA.COM] 8-bit_ Moonlight Sonata, 3rd Movement - Beethoven-64k.wav-2f8eb61e597191280c01b63123b2a97b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

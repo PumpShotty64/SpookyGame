@@ -6,21 +6,27 @@ public class Enemy2 : KinematicBody2D
 	PlayerDetection playerDetection = null;
 	private AnimationPlayer animationPlayer = null;
 	private AudioStreamPlayer audio = null;
+	int STATE = 0;
 	int HEALTH = 2 + 1; // idk why he takes damage instantly when spawning
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
-		audio.VolumeDb = 3;
 		playerDetection = GetNode<Area2D>("PlayerDetection") as PlayerDetection;
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		animationPlayer.Play("PreIdle");
 	}
 
 	// Called when physics
 	public override void _PhysicsProcess(float delta)
 	{
-		animationPlayer.Play("Idle");
+		if (STATE == 0 && playerDetection.player != null)
+		{
+			STATE = 1;
+			audio.Play();
+			animationPlayer.Play("Idle");
+		}
 	}
 
 	// When i die, call me

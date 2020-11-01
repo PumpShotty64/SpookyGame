@@ -3,8 +3,13 @@ using System;
 
 public class World_Main : Node2D
 {   
+	private AudioStreamPlayer audio = null;
+	
 	public override void _Ready()
 	{
+		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+		audio.VolumeDb = 10;
+		audio.Play();
 		GetNode("Player").Connect("Shoot", this, nameof(_on_Player_Shoot));
 		GetNode("Player").Connect("Throw", this, nameof(_on_Player_Throw));
 	}
