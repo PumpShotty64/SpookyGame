@@ -75,6 +75,3 @@ public class Enemy0 : KinematicBody2D
 		QueueFree();
 	}
 }
-
-
-

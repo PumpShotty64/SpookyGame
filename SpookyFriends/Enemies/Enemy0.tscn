@@ -131,6 +131,7 @@ states/Run/node = SubResource( 14 )
 states/Run/position = Vector2( 376, 50 )
 transitions = [ "Idle", "Run", SubResource( 15 ), "Run", "Idle", SubResource( 16 ) ]
 start_node = "Idle"
+graph_offset = Vector2( -99, -6 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
