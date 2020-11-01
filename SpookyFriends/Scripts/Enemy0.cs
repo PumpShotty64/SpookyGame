@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Enemy0 : KinematicBody2D
+public class Enemy1 : KinematicBody2D
 {
 	private Vector2 velocity = new Vector2(0, 0);
 	// private Vector2 snap = new Vector2(0, -1);
@@ -10,7 +10,7 @@ public class Enemy0 : KinematicBody2D
 	[Export] int MAXSPEED = 110;
 	[Export] int ACCELERATION = 600;
 	// [Export] int FRICTION = 800;
-	Enemy0Stats Stats = null;
+	Enemy1Stats Stats = null;
 	PlayerDetection playerDetection = null;
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
@@ -20,7 +20,7 @@ public class Enemy0 : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Stats = GetNode<Node>("Enemy0Stats") as Enemy0Stats; 
+		Stats = GetNode<Node>("Enemy0Stats") as Enemy1Stats; 
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;

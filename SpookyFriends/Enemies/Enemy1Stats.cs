@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public class Enemy0Stats : Node
+public class Enemy1Stats : Node
 {
 	// Declare member variables here. Examples:
-	[Export] public int MAXHEALTH = 1;
+	[Export] public int MAXHEALTH = 3;
 	[Export] public int HEALTH = 1;
 	public int HEALTH_{
 		get{
@@ -25,11 +25,4 @@ public class Enemy0Stats : Node
 	}
 	
 	[Signal] public delegate void NoHealth();
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
-

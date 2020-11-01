@@ -14,6 +14,8 @@ position = Vector2( 568, 288 )
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
 position = Vector2( 112, 288 )
 collision_mask = 17
+MAXSPEED = null
+ACCELERATION = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -22,3 +24,4 @@ collision_mask = 0
 polygon = PoolVector2Array( 0, 0, 0, 320, 640, 320, 640, 0, 656, 0, 656, 400, -16, 400, -16, 0 )
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 335.85, 281.817 )
