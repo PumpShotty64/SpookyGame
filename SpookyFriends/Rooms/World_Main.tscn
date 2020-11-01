@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Enemy0.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Rooms/Walls.cs" type="Script" id=7]
 [ext_resource path="res://Enemies/Enemy2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Player/Dog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Player/Darkness.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -73,10 +74,12 @@ tile_data = PoolIntArray( 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0
 position = Vector2( 561, 224 )
 
 [node name="Dog" parent="Player" instance=ExtResource( 9 )]
-position = Vector2( 27.793, 23.9845 )
+position = Vector2( 21.0466, 24.1829 )
+
+[node name="Darkness" parent="Player" instance=ExtResource( 10 )]
 
 [node name="Enemy2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 430.847, 180.479 )
+position = Vector2( 512.272, 165.796 )
 
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 94.1124, 216.75 )
