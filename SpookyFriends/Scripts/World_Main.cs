@@ -14,9 +14,11 @@ public class World_Main : Node2D
 			AddChild(bulletInstance);
 			bulletInstance.RotationDegrees = angle;
 			bulletInstance.Position = location;
+			/*
 			GD.Print("SHOOOOOT");
 			GD.Print(angle);
 			GD.Print(location);
+			*/
 	}
 }
 

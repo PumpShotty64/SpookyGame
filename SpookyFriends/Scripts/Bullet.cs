@@ -5,16 +5,23 @@ public class Bullet : Area2D
 {
 	private Vector2 velocity = new Vector2();
 	private const int SPEED = 500;
-
+	private Vector2 initial = new Vector2();
+	private bool initialized = false;
+	private int MAXDIST = 100;
+	
 	public override void _PhysicsProcess(float delta)
 	{
+		if (!initialized)
+		{
+			initialized = true;
+			initial = GetPosition();
+		}
 		velocity.x = (float) Math.Cos((double)RotationDegrees * Math.PI/180) * SPEED;
 		velocity.y = (float) Math.Sin((double)RotationDegrees * Math.PI/180) * SPEED;
 		Position += velocity * delta;
 		
-		if (Position.x < -100 || Position.x > 1500 || Position.y < -100 || Position.y > 1000) // hardset numbers
+		if ((initial - Position).Length() > MAXDIST)
 		{
-			GD.Print("deleting!");
 			QueueFree();
 		}
 	}
