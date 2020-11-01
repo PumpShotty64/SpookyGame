@@ -45,7 +45,7 @@ public class Player : KinematicBody2D
 			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
 		}
 		
-		//velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
+		// velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
 		velocity = MoveAndSlide(velocity);
 	}
 }
