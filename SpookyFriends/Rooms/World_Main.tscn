@@ -6,12 +6,14 @@
 [node name="World_Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 621.129, 179.925 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( -4.37283, 139.525, 67.7521, 67.4004, 192.203, 65.9861, 226.851, 186.194, 309.583, 205.286, 393.021, 251.955, 475.046, 264.683, 519.593, 261.855, 577.576, 209.529, 639.094, 208.822, 640.509, 118.312, 752.939, 251.955, 343.524, 394.084 )
+position = Vector2( 568, 288 )
+collision_layer = 2
 
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
-position = Vector2( 270.787, 159.25 )
+position = Vector2( 112, 288 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 0, 320, 640, 320, 640, 0, 656, 0, 656, 400, -16, 400, -16, 0 )
