@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Enemy1Death : Node2D
+public class Enemy3Death : Node2D
 {
 	AnimatedSprite animation = null;
 	
@@ -16,6 +16,6 @@ public class Enemy1Death : Node2D
 	public void _on_AnimatedSprite_animation_finished()
 	{
 		animation.Stop();
-		animation.SetFrame(13);
+		animation.SetFrame(5);
 	}
 }

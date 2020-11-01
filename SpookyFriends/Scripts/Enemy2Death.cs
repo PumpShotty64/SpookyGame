@@ -10,7 +10,7 @@ public class Enemy2Death : Node2D
 		animation = GetNode<AnimatedSprite>("AnimatedSprite");
 		animation.Frame = 0;
 		GetNode("AnimatedSprite").Connect("animation_finished", this, nameof(_on_AnimatedSprite_animation_finished));
-		animation.Play("animate");
+		animation.Play("anime");
 	}
 	
 	public void _on_AnimatedSprite_animation_finished()
