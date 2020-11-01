@@ -30,4 +30,12 @@ public class Darkness : KinematicBody2D
 			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
 		}
 	}
+	
+	private void _on_Timer_timeout()
+	{
+		
+	}
 }
+
+
+
