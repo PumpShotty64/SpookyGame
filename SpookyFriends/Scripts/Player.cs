@@ -101,6 +101,7 @@ public class Player : KinematicBody2D
 			EmitSignal(nameof(Shoot), bullet, gunNode.RotationDegrees, gunNode.GlobalPosition);
 			state = Actions.SHOOT;
 			timer.Start();
+			//
 		}
 		
 	}
