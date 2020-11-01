@@ -309,4 +309,8 @@ hframes = 2
 frame = 1
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="FlashCooldown" type="Timer" parent="."]
+wait_time = 5.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="FlashCooldown" to="." method="_on_FlashCooldown_timeout"]

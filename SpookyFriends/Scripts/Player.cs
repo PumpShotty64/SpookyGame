@@ -15,6 +15,7 @@ public class Player : KinematicBody2D
 	
 	// Gun vars and mouse vars
 	private Node2D gunNode = null;
+	private bool canFlash = true;
 	private Vector2 direction;
 	private float angle;
 
@@ -22,9 +23,14 @@ public class Player : KinematicBody2D
 	[Signal]
 	delegate void Shoot(PackedScene bullet, float angle, Vector2 location);
 
+	[Signal]
+	delegate void Throw(PackedScene flashbang, float angle, Vector2 location);
+
 	private PackedScene bullet = null;
+	private PackedScene flashbang = null;
 
 	Timer timer = new Timer();
+	Timer flashCooldown = new Timer();
 
 	// Used to change states
 	enum Actions
@@ -45,7 +51,9 @@ public class Player : KinematicBody2D
 		animationTree.Active = true;
 		animationState = animationTree.Get("parameters/playback") as AnimationNodeStateMachinePlayback;
 		bullet = GD.Load<PackedScene>("res://Player/Bullet.tscn");
+		flashbang = GD.Load<PackedScene>("res://Player/Flashbang.tscn");
 		timer = GetNode<Timer>("Timer");
+		flashCooldown = GetNode<Timer>("FlashCooldown");
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -103,9 +111,11 @@ public class Player : KinematicBody2D
 			timer.Start();
 		}
 
-		if (Input.IsActionJustPressed("flash")) 
+		if (Input.IsActionJustPressed("flash") && canFlash == true) 
 		{
-			
+			EmitSignal(nameof(Throw), flashbang, gunNode.RotationDegrees, gunNode.GlobalPosition);
+			canFlash = false;
+			flashCooldown.Start();
 		}
 		
 	}
@@ -137,13 +147,23 @@ public class Player : KinematicBody2D
 			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
 		}
 		
+		velocity = MoveAndSlide(velocity);
+
 		//velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
 		if (Input.IsActionJustPressed("shoot"))
 		{
 			EmitSignal(nameof(Shoot), bullet, gunNode.RotationDegrees, gunNode.GlobalPosition);
 			timer.Start();
 		}
-		velocity = MoveAndSlide(velocity);
+
+		if (Input.IsActionJustPressed("flash") && canFlash == true) 
+		{
+			EmitSignal(nameof(Throw), flashbang, gunNode.RotationDegrees, gunNode.GlobalPosition);
+			canFlash = false;
+			flashCooldown.Start();
+		}
+
+		
 	}
 
 	private void _on_Timer_timeout()
@@ -151,5 +171,14 @@ public class Player : KinematicBody2D
 		state = Actions.MOVE;
 		timer.Stop();
 	}
+	
+	private void _on_FlashCooldown_timeout()
+	{
+		canFlash = true;
+		timer.Stop();
+	}
 }
+
+
+
 

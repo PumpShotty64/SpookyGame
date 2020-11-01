@@ -78,12 +78,13 @@ position = Vector2( 21.0466, 24.1829 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 10 )]
 
+[node name="Enemy2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 512.272, 165.796 )
+
 [node name="Enemy1" parent="." instance=ExtResource( 4 )]
 position = Vector2( 94.1124, 216.75 )
 
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
 position = Vector2( 348.264, 226.247 )
 collision_mask = 17
-
-[node name="Enemy2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 512.272, 165.796 )
+[connection signal="Throw" from="Player" to="." method="_on_Player_Throw"]
