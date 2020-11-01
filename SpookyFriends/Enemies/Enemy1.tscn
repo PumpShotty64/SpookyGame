@@ -1,10 +1,81 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/big-boye-sprite-sheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Enemy1Stats.cs" type="Script" id=2]
 [ext_resource path="res://Hurtbox and Hitbox/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Hurtbox and Hitbox/Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/PlayerDetection.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Enemy1.cs" type="Script" id=6]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Flash"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Run"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/Idle/node = SubResource( 8 )
+states/Idle/position = Vector2( 255, 107 )
+states/Run/node = SubResource( 9 )
+states/Run/position = Vector2( 504, 105 )
+transitions = [ "Idle", "Run", SubResource( 10 ), "Run", "Idle", SubResource( 11 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 304.0
@@ -17,6 +88,7 @@ radius = 9.38545
 height = 35.6359
 
 [node name="Enemy1" type="KinematicBody2D"]
+script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -24,8 +96,15 @@ vframes = 4
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Flash = SubResource( 6 )
+anims/Idle = SubResource( 7 )
+anims/Run = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 13 )
 
 [node name="Enemy1Stats" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -47,6 +126,7 @@ shape = SubResource( 2 )
 position = Vector2( -5.64874, 28.2437 )
 rotation = 1.57079
 shape = SubResource( 3 )
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
 
 [editable path="PlayerDetection"]
 

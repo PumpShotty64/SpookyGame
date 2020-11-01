@@ -165,13 +165,13 @@ parameters/playback = SubResource( 18 )
 parameters/Idle/blend_position = Vector2( -0.0772797, 0.0172414 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
+[node name="Enemy0Stats" parent="." instance=ExtResource( 4 )]
+
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( 0, 4.96062 )
 shape = SubResource( 19 )
-
-[node name="Enemy0Stats" parent="." instance=ExtResource( 4 )]
 
 [node name="PlayerDetection" parent="." instance=ExtResource( 5 )]
 

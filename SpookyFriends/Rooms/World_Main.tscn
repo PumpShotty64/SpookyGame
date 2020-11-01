@@ -6,22 +6,21 @@
 [ext_resource path="res://Enemies/Enemy1.tscn" type="PackedScene" id=4]
 
 [node name="World_Main" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 568, 288 )
 
+[node name="Enemy1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 197.76, 280.035 )
+
 [node name="Enemy0" parent="." instance=ExtResource( 2 )]
-position = Vector2( 112, 288 )
+position = Vector2( 354.324, 287.109 )
 collision_mask = 17
-MAXSPEED = null
-ACCELERATION = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 0, 320, 640, 320, 640, 0, 656, 0, 656, 400, -16, 400, -16, 0 )
-
-[node name="Enemy1" parent="." instance=ExtResource( 4 )]
-position = Vector2( 335.85, 281.817 )
