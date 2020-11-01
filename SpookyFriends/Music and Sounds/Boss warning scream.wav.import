@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Boss warning scream.wav-e3b982fc6f57305cdb3bd9162fd4b444.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Boss warning scream.wav"
+dest_files=[ "res://.import/Boss warning scream.wav-e3b982fc6f57305cdb3bd9162fd4b444.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

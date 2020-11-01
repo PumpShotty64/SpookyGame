@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shorter monster snarl 2.wav-eb4f4faaba165b529cdf2a9cd8d3c69e.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/shorter monster snarl 2.wav"
+dest_files=[ "res://.import/shorter monster snarl 2.wav-eb4f4faaba165b529cdf2a9cd8d3c69e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

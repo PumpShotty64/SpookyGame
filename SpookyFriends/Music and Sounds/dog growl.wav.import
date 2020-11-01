@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dog growl.wav-5a8322fc3f4c0e6d0f79f1b533a26c1a.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/dog growl.wav"
+dest_files=[ "res://.import/dog growl.wav-5a8322fc3f4c0e6d0f79f1b533a26c1a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
