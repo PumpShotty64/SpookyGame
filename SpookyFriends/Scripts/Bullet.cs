@@ -7,7 +7,7 @@ public class Bullet : Area2D
 	private const int SPEED = 500;
 	private Vector2 initial = new Vector2();
 	private bool initialized = false;
-	private int MAXDIST = 100;
+	private int MAXDIST = 150;
 	
 	public override void _PhysicsProcess(float delta)
 	{
