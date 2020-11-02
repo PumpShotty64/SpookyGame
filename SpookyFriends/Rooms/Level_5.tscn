@@ -217,11 +217,11 @@ position = Vector2( 440.7, 174.788 )
 position = Vector2( 446.443, 222.243 )
 scale = Vector2( -1, 1 )
 
+[node name="Dog" parent="." instance=ExtResource( 5 )]
+position = Vector2( 110.841, 248.186 )
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 84.4123, 228.837 )
-
-[node name="Dog" parent="Player" instance=ExtResource( 5 )]
-position = Vector2( 26.4285, 19.3494 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 11 )]
 

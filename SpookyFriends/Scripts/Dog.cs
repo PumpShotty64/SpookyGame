@@ -11,15 +11,7 @@ public class Dog : KinematicBody2D
 	private AnimationPlayer animationPlayer = null;
 	private AnimationTree animationTree = null;
 	private AnimationNodeStateMachinePlayback animationState = null;
-
-
-	enum Actions
-	{
-		MOVE,
-		BARK
-	}
-
-	private Actions state = Actions.MOVE;
+	private Player owner = null;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,41 +19,28 @@ public class Dog : KinematicBody2D
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animationTree = GetNode<AnimationTree>("AnimationTree");
 		animationTree.Active = true;
+		owner = GetParent().GetNode<KinematicBody2D>("Player") as Player;
 		animationState = animationTree.Get("parameters/playback") as AnimationNodeStateMachinePlayback;
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
-		switch (state)
-		{
-			case Actions.MOVE:
-				_MoveState(delta);
-				break;
-			case Actions.BARK:
-				_BarkState(delta);
-				break;
-		}
-	}
-
-	private void _MoveState(float delta)
-	{
-		Vector2 InputVector = new Vector2();
-		InputVector.x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-
-		if (InputVector != Vector2.Zero)
-		{
-			// Begin accelerating in a specific direction
-			animationTree.Set("parameters/Idle/blend_position", InputVector);
-			animationTree.Set("parameters/Walk/blend_position", InputVector);
-			animationState.Travel("Walk");
-			velocity = velocity.MoveToward(InputVector * MAXSPEED, ACCELERATION * delta);
-		}
-		else
-		{
-			// Begin slowing down
+		velocity = owner.GlobalPosition - GlobalPosition;
+		animationTree.Set("parameters/Idle/blend_position", velocity);
+		animationTree.Set("parameters/Walk/blend_position", velocity);
+		animationState.Travel("Walk");
+		
+		if (velocity.x > 20) {
+			velocity.x = MAXSPEED;
+		} else if (velocity.x < -20) {
+			velocity.x = -MAXSPEED;
+		} else {
 			animationState.Travel("Idle");
-			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
+			velocity.x = 0;
 		}
+		
+		velocity.y = 0;
+		velocity = MoveAndSlide(velocity);
 	}
 
 	private void _BarkState(float delta)

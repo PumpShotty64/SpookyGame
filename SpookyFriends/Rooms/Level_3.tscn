@@ -205,13 +205,13 @@ tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0,
 [node name="Door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 541.761, 224.798 )
 
+[node name="Dog" parent="." instance=ExtResource( 8 )]
+position = Vector2( 111.923, 249.127 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 79.7093, 226.022 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 7 )]
-
-[node name="Dog" parent="Player" instance=ExtResource( 8 )]
-position = Vector2( 32.2136, 23.1046 )
 
 [node name="Enemy3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 242.848, 160.37 )

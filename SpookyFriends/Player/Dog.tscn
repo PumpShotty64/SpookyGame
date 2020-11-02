@@ -204,7 +204,7 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 vframes = 4
 hframes = 5
-frame = 19
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/BarkLeft = SubResource( 1 )
@@ -217,7 +217,8 @@ anims/WalkRight = SubResource( 6 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 28 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 29 )
 parameters/Bark/blend_position = Vector2( -0.315301, 0.0344827 )
-parameters/Idle/blend_position = Vector2( -0.261206, 0.267241 )
-parameters/Walk/blend_position = Vector2( 0.154559, 0.0431035 )
+parameters/Idle/blend_position = Vector2( -0.242658, 0.0517242 )
+parameters/Walk/blend_position = Vector2( 0.105101, -0.0689656 )

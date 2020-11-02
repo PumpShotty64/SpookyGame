@@ -268,13 +268,13 @@ position = Vector2( 293.784, 179.878 )
 [node name="Enemy0" parent="Enemy2" instance=ExtResource( 10 )]
 position = Vector2( 53.1703, 47.2516 )
 
+[node name="Dog" parent="." instance=ExtResource( 5 )]
+position = Vector2( 591.333, 248.28 )
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 563.212, 226.617 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 7 )]
-
-[node name="Dog" parent="Player" instance=ExtResource( 5 )]
-position = Vector2( 28.1215, 21.6631 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

@@ -78,11 +78,11 @@ position = Vector2( 291.296, 176.51 )
 scale = Vector2( 0.421557, 0.454186 )
 texture = ExtResource( 2 )
 
+[node name="Dog" parent="." instance=ExtResource( 9 )]
+position = Vector2( 592.535, 248.183 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 571.488, 224 )
-
-[node name="Dog" parent="Player" instance=ExtResource( 9 )]
-position = Vector2( 21.0466, 24.1829 )
 
 [node name="Darkness" parent="Player" instance=ExtResource( 10 )]
 
