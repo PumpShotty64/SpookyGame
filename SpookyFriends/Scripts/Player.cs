@@ -14,6 +14,8 @@ public class Player : KinematicBody2D
 	private AnimationNodeStateMachinePlayback animationState = null;
 	
 	// Gun vars and mouse vars
+	private int ammoFull = 6;
+	private int ammo = 6;
 	private Node2D gunNode = null;
 	private bool canFlash = true;
 	private Vector2 direction;
@@ -104,10 +106,11 @@ public class Player : KinematicBody2D
 		// velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
 		velocity = MoveAndSlide(velocity);
 
-		if (Input.IsActionJustPressed("shoot"))
+		if (Input.IsActionJustPressed("shoot") && ammo > 0)
 		{
 			EmitSignal(nameof(Shoot), bullet, gunNode.RotationDegrees, gunNode.GlobalPosition);
 			state = Actions.SHOOT;
+			ammo--;
 			timer.Start();
 		}
 
@@ -150,9 +153,10 @@ public class Player : KinematicBody2D
 		velocity = MoveAndSlide(velocity);
 
 		//velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
-		if (Input.IsActionJustPressed("shoot"))
+		if (Input.IsActionJustPressed("shoot") && ammo > 0)
 		{
 			EmitSignal(nameof(Shoot), bullet, gunNode.RotationDegrees, gunNode.GlobalPosition);
+			ammo--;
 			timer.Start();
 		}
 
@@ -168,18 +172,20 @@ public class Player : KinematicBody2D
 	private void _on_Timer_timeout()
 	{	
 		state = Actions.MOVE;
+		ammo = ammoFull;
 		timer.Stop();
 	}
 	
 	private void _on_FlashCooldown_timeout()
 	{
 		canFlash = true;
-		timer.Stop();
+		flashCooldown.Stop();
 	}
 	
 	private void _on_Hurtbox_area_entered_painful(object area)
 	{
 		GD.Print("Dieded");
+		GetTree().ReloadCurrentScene();
 	}
 
 }
