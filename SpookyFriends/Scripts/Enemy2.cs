@@ -21,11 +21,14 @@ public class Enemy2 : KinematicBody2D
 	// Called when physics
 	public override void _PhysicsProcess(float delta)
 	{
-		if (STATE == 0 && playerDetection.player != null)
+		if (STATE == 1)
+		{
+			animationPlayer.Play("Idle");
+		}
+		else if (playerDetection.player != null)
 		{
 			STATE = 1;
 			audio.Play();
-			animationPlayer.Play("Idle");
 		}
 	}
 

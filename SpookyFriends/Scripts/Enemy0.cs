@@ -65,11 +65,17 @@ public class Enemy0 : KinematicBody2D
 		animation.GlobalPosition = GlobalPosition;
 		world.AddChild(animation);
 	}
+	
+	private void _on_Hurtbox_area_entered_sight(Bullet area)
+	{
+		GD.Print("i killed him");
+	}
 
-	private void _on_Hurtbox_area_entered(Bullet area)
+	private void _on_Hurtbox_area_entered_painful(Bullet area)
 	{
 		GD.Print("Enemy0 pain");
 		_DeathEffect();
 		QueueFree();
 	}
 }
+

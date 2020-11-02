@@ -81,7 +81,9 @@ shape = SubResource( 5 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 pitch_scale = 4.0
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered_painful"]
+[connection signal="area_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_area_entered_sight"]
+[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_entered_sight"]
 
 [editable path="Hurtbox"]
 

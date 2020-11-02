@@ -60,7 +60,7 @@ public class Enemy3 : KinematicBody2D
 	}
 
 	// When i have ouchie, call me
-	private void _on_Hurtbox_area_entered(object area)
+	private void _on_Hurtbox_area_entered_painful(object area)
 	{
 		// area.damage wont work for some reason, even after casting to Bullet
 		GD.Print("Enemy3 pain");

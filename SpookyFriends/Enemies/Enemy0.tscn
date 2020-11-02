@@ -174,6 +174,7 @@ parameters/Run/blend_position = Vector2( 0, 0 )
 [node name="Enemy0Stats" parent="." instance=ExtResource( 4 )]
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+collision_layer = 256
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2( 0, 4.96062 )
@@ -185,6 +186,8 @@ shape = SubResource( 19 )
 shape = SubResource( 20 )
 
 [node name="EnemyHitbox" parent="." instance=ExtResource( 7 )]
+collision_layer = 2147483904
+collision_mask = 2147484160
 
 [node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
 position = Vector2( 0.166855, 5.00565 )
@@ -192,7 +195,9 @@ shape = SubResource( 21 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered_painful"]
+[connection signal="area_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_area_entered_sight"]
+[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_entered_sight"]
 
 [editable path="PlayerDetection"]
 

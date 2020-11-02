@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/player_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/player_gun_spritesheet.png" type="Texture" id=3]
-[ext_resource path="res://Hurtbox and Hitbox/PlayerHurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Hurtbox and Hitbox/Hurtbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.56564
-height = 4.02264
+height = 4.03112
 
 [sub_resource type="Animation" id=2]
 resource_name = "IdleGunLeft"
@@ -264,8 +264,9 @@ graph_offset = Vector2( -122, 40 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
-[sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 2.39654, 21.165 )
+[sub_resource type="CapsuleShape2D" id=40]
+radius = 3.22758
+height = 52.3773
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
@@ -317,13 +318,15 @@ frame = 1
 [node name="FlashCooldown" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="PlayerHurtbox" parent="." instance=ExtResource( 4 )]
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 512
+collision_mask = 256
 
-[node name="CollisionShape2D" parent="PlayerHurtbox" index="0"]
-position = Vector2( -0.148651, -0.148651 )
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -1.591, 2.2981 )
 shape = SubResource( 40 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="FlashCooldown" to="." method="_on_FlashCooldown_timeout"]
-[connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_PlayerHurtbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered_painful"]
 
-[editable path="PlayerHurtbox"]
+[editable path="Hurtbox"]

@@ -177,13 +177,16 @@ public class Player : KinematicBody2D
 		timer.Stop();
 	}
 	
-	private void _on_PlayerHurtbox_area_entered(object area)
+	private void _on_Hurtbox_area_entered_painful(object area)
 	{
-		// Replace with function body.
-		GD.Print("DIED");
+		GD.Print("Dieded");
 	}
 
 }
+
+
+
+
 
 
 

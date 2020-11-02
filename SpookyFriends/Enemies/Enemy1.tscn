@@ -89,6 +89,8 @@ radius = 16.0
 height = 0.0
 
 [node name="Enemy1" type="KinematicBody2D"]
+collision_layer = 256
+collision_mask = 16
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -116,6 +118,7 @@ script = ExtResource( 2 )
 shape = SubResource( 10 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 256
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -4.71298, 3.79072 )
@@ -130,7 +133,8 @@ shape = SubResource( 12 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-[connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
+[connection signal="area_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_area_entered_sight"]
+[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_entered_sight"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="PlayerDetection"]
