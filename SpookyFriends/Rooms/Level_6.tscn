@@ -240,7 +240,7 @@ position = Vector2( 308.18, 227.039 )
 position = Vector2( 146.658, 220.557 )
 
 [node name="Dog" parent="." instance=ExtResource( 5 )]
-position = Vector2( 591.466, 253.129 )
+position = Vector2( 592.855, 248.566 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 565.375, 230.026 )
@@ -251,3 +251,4 @@ position = Vector2( 565.375, 230.026 )
 stream = ExtResource( 12 )
 volume_db = 0.5
 pitch_scale = 0.25
+autoplay = true
