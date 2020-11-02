@@ -30,8 +30,10 @@ public class Door : Node2D
 			GD.Print(paths[index]);
 			GetTree().ChangeScene(paths[index]);
 			index++;
+			if (index > 7) index = 1;
 			GD.Print(index);
 		}
+
 	}
 	
 	private void _on_Area2D_body_entered(object body)

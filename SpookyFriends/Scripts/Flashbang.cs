@@ -6,6 +6,7 @@ public class Flashbang : Area2D
 	private const int SPEED = 500;
 	private Vector2 velocity = new Vector2();
 	Timer timer = new Timer();
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

@@ -214,7 +214,7 @@ position = Vector2( 244.374, 160.158 )
 position = Vector2( 440.7, 174.788 )
 
 [node name="Enemy1" parent="." instance=ExtResource( 6 )]
-position = Vector2( 447.779, 218.679 )
+position = Vector2( 446.443, 222.243 )
 scale = Vector2( -1, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
