@@ -33,6 +33,10 @@ public class Player : KinematicBody2D
 
 	Timer timer = new Timer();
 	Timer flashCooldown = new Timer();
+	Timer walkTimer = new Timer();
+
+	AudioStreamPlayer sound = null;
+	private int isWalking = 0;
 
 	// Used to change states
 	enum Actions
@@ -56,6 +60,8 @@ public class Player : KinematicBody2D
 		flashbang = GD.Load<PackedScene>("res://Player/Flashbang.tscn");
 		timer = GetNode<Timer>("Timer");
 		flashCooldown = GetNode<Timer>("FlashCooldown");
+		walkTimer = GetNode<Timer>("WalkTimer");
+		sound = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -95,12 +101,19 @@ public class Player : KinematicBody2D
 			animationTree.Set("parameters/Run/blend_position", InputVector);
 			animationState.Travel("Run");
 			velocity = velocity.MoveToward(InputVector * MAXSPEED, ACCELERATION * delta);
+			isWalking++;
 		}
 		else
 		{
 			// Begin slowing down
 			animationState.Travel("Idle");
 			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
+			walkTimer.Stop();
+			isWalking = 0;
+		}
+
+		if (isWalking == 1) {
+			walkTimer.Start();
 		}
 		
 		// velocity = MoveAndSlideWithSnap(velocity, snapDist, snap, stopOnSlope: true);
@@ -148,6 +161,7 @@ public class Player : KinematicBody2D
 			// Begin slowing down
 			animationState.Travel("IdleGun");
 			velocity = velocity.MoveToward(Vector2.Zero, FRICTION * delta);
+			walkTimer.Stop();
 		}
 		
 		velocity = MoveAndSlide(velocity);
@@ -187,24 +201,15 @@ public class Player : KinematicBody2D
 		GD.Print("Dieded");
 		GetTree().ReloadCurrentScene();
 	}
+	
+	private void _on_WalkTimer_timeout()
+	{
+		// Replace with function body.
+		walkTimer.Start();
+		sound.Play();
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

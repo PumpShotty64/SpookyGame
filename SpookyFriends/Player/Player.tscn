@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/player_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/player_gun_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Hurtbox and Hitbox/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Music and Sounds/player footstep.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.56564
@@ -325,8 +326,18 @@ collision_mask = 256
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -1.591, 2.2981 )
 shape = SubResource( 40 )
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 0.45
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -1.0
+pitch_scale = 2.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="FlashCooldown" to="." method="_on_FlashCooldown_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered_painful"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
 
 [editable path="Hurtbox"]

@@ -16,6 +16,8 @@ public class Door : Node2D
 	};
 	private static int index = 0;
 
+	private AudioStreamPlayer sound = null;
+
 	public override void _Ready()
 	{
 		Connect("body_entered", this, "_on_Area2D_body_entered");
