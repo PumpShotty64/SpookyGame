@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/tutorial.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Tile Sets/RoomTileSet.png" type="Texture" id=5]
 [ext_resource path="res://Tile Sets/Background.png" type="Texture" id=6]
 [ext_resource path="res://Rooms/Walls.cs" type="Script" id=7]
+[ext_resource path="res://Sprites/quit.png" type="Texture" id=8]
 [ext_resource path="res://Player/Dog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/Darkness.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Player/Door.tscn" type="PackedScene" id=13]
@@ -77,6 +78,11 @@ position = Vector2( 82.5114, 223.211 )
 position = Vector2( 291.296, 176.51 )
 scale = Vector2( 0.421557, 0.454186 )
 texture = ExtResource( 2 )
+
+[node name="quit" type="Sprite" parent="."]
+position = Vector2( 532.919, 171.454 )
+scale = Vector2( 1.28679, 1.26337 )
+texture = ExtResource( 8 )
 
 [node name="Dog" parent="." instance=ExtResource( 9 )]
 position = Vector2( 592.535, 248.183 )

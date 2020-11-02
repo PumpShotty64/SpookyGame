@@ -8,6 +8,11 @@ public class World_Main : Node2D
 		GetNode("Player").Connect("Shoot", this, nameof(_on_Player_Shoot));
 		GetNode("Player").Connect("Throw", this, nameof(_on_Player_Throw));
 	}
+	
+	public override void _Process(float delta)
+	{
+		if (Input.IsActionJustPressed("quit")) GetTree().Quit();	
+	}
 
 	private void _on_Player_Shoot(PackedScene bullet, float angle, Vector2 location)
 	{
